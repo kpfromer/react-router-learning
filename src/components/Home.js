@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 
-class Home extends Component {    
+class Home extends Component {
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const teacherName = this.name.value;
+    const teacherTopic = this.topic.value;
+    const path = `/teachers/${teacherTopic}/${teacherName}`;
+
+    this.props.history.push(path);
+  };
   
   render() {
     return (
@@ -12,9 +20,12 @@ class Home extends Component {
         <p>We have thousands of videos created by expert teachers on web design and front end development. Our library is continually refreshed with the latest on web technology so you will never fall behind.</p>
         <hr />
 
-        <Link to="/teachers/HTML/Tommy/Wingo">
-          Tommy Wingo
-        </Link>
+        <form onSubmit={this.handleSubmit}>
+          {/* ref are called when the component is mounted, gives access to input */}
+          <input type="text" placeholder="Name" ref={ input => this.name = input }/>
+          <input type="text" placeholder="Topic" ref={ input => this.topic = input }/>
+          <button type="submit">Go!</button>
+        </form>
         
       </div>
     );
