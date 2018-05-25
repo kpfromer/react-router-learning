@@ -6,6 +6,7 @@ import Header from "./Header";
 import Courses from "./Courses";
 import Teachers from "./Teachers";
 import NotFound from "./NotFound";
+import Featured from "./Featured";
 
 const App = () => (
   <BrowserRouter>
@@ -21,7 +22,9 @@ const App = () => (
         <Route path="/about" component={About}/>
         <Route path="/courses" component={Courses} />
         {/* You can use render and pass a function! useful for passing props */}
-        <Route path="/teachers" render={() => <Teachers />} />
+        <Route exact path="/teachers" render={() => <Teachers />} />
+        {/*<Route path="/teachers/:topic/:fname-:lname" component={Featured} />*/}
+        <Route path="/teachers/:topic/:fname/:lname?" component={Featured} />
 
         <Route component={NotFound} />
       </Switch>
